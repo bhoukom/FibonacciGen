@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core;
 
-namespace Alex_Hofer_DotNET_Training_Project_One
+
+namespace AlexHofer.DotNetTraining.ProjectOne
 {
     internal static class Program
     {
         private static void Main(string[] args)
         {
-            //Stub for now, will be adding console parsing in the future.
-            Console.WriteLine("Please enter a number:");
+            //Testing for file writing. STUB
+            Console.WriteLine("Please enter a file name for input:");
             var input = Console.ReadLine();
+            Console.Clear();
+
+            Console.WriteLine("Please enter a file name to output to:");
+            var output = Console.ReadLine();
             Console.Clear();
             //End of stub
 
-            //Getting my input from the console, converting to an Int, then sending it off to the Fibonacci generator.
-            //Then getting back the list of numbers and storing it into "returnedNumbers".
-            var returnedNumbers = FibonacciGenerator.FibGen(Convert.ToInt32(input));
+
+            var fileInput = PlainTextIO.ReadFile(input);
+
+            var returnedNumbers = FibonacciGenerator.FibGen(Convert.ToInt32(fileInput));
+
+            var fileOutput = PlainTextIO.WriteFile(output, returnedNumbers);
 
             //Going though each number in the list and writing it to the console.
             //NOTE: THe list will eventually be passed to one of three other methods that will output an XML File, Plain Text File, or just still write to the console.

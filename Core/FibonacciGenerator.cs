@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Alex_Hofer_DotNET_Training_Project_One
+namespace Core
 {
-    internal static class FibonacciGenerator
+    public class FibonacciGenerator
     {
         //Making my Fibonacci Generator method so I can call it from where ever I want.
         public static IEnumerable<int> FibGen(int n)
@@ -20,17 +20,30 @@ namespace Alex_Hofer_DotNET_Training_Project_One
             _numberList.Add(first);
             _numberList.Add(second);
 
-            //Array that will loop "n" times specified by the User to generate a list of Fibonacci numbers.
-            for (var i = 0; i < n; i++)
+            //Subtracting two as the first two calculations are done already.
+            n = n - 2;
+
+            //Check to see if it's even worth going into the loop.
+            if (n < 2)
             {
-                var final = second;
+                return _numberList;
+            }
 
-                second = first + second;
+                //If it is head on into the loop.
+            else
+            {
+                //Array that will loop "n" times specified by the User to generate a list of Fibonacci numbers.
+                for (var i = 0; i < n; i++)
+                {
+                    var next = second;
 
-                first = final;
+                    second = first + second;
 
-                //Adding the newest Fibonacci number to the list.
-                _numberList.Add(second);
+                    first = next;
+
+                    //Adding the newest Fibonacci number to the list.
+                    _numberList.Add(second);
+                }
             }
 
             //Return my list to the main loop.
