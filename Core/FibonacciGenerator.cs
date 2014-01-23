@@ -20,20 +20,8 @@ namespace Core
             _numberList.Add(first);
             _numberList.Add(second);
 
-            //Subtracting two as the first two calculations are done already.
-            n = n - 2;
-
-            //Check to see if it's even worth going into the loop.
-            if (n < 2)
-            {
-                return _numberList;
-            }
-
-                //If it is head on into the loop.
-            else
-            {
-                //Array that will loop "n" times specified by the User to generate a list of Fibonacci numbers.
-                for (var i = 0; i < n; i++)
+            //Array that will loop "n" times specified by the User to generate a list of Fibonacci numbers.
+            for (var i = 2; i < n; i++)
                 {
                     var next = second;
 
@@ -44,7 +32,6 @@ namespace Core
                     //Adding the newest Fibonacci number to the list.
                     _numberList.Add(second);
                 }
-            }
 
             //Return my list to the main loop.
             return _numberList;
