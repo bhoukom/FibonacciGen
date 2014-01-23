@@ -58,7 +58,7 @@ namespace Core
             return 0;
         }
 
-        [XmlRoot("fiboutput", Namespace = null)]
+        [XmlRoot("fiboutput")]
         public class ResultClass
         {
             [XmlElement("result")]
@@ -70,7 +70,7 @@ namespace Core
             try
             {
                 var stringList = numberList.Select(i => i.ToString()).ToArray();
-                var myObject = new ResultClass() { Number = stringList };
+                var myObject = new ResultClass { Number = stringList };
                 var namespaces = new XmlSerializerNamespaces();
                 namespaces.Add(string.Empty, string.Empty);
 
@@ -80,32 +80,15 @@ namespace Core
                     var mysSerializer = new XmlSerializer(typeof(ResultClass));
                     mysSerializer.Serialize(textWriter, myObject, namespaces);
                 }
-                
-
-                
-
 
                 //Setting up my XML seralizer to take in my filename and numberlist.
             }
 
                 //Catch any exceptions that might crop up.
-            catch (FileNotFoundException)
+            catch (IOException e)
             {
-                Console.WriteLine("The file does not exist. ");
+                throw new Exception("There was an issue saving the file: " + e);
             }
-
-            catch (AccessViolationException)
-            {
-                Console.WriteLine("You do not have permisson to open this file.");
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("Something went terribly wrong: " + e);
-            }
-
-            //If all went well, go back to Main.
-            return;
         }
     }
 }
